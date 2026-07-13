@@ -20,6 +20,26 @@ function styleFor(modelLabel) {
 }
 
 /**
+ * Renders a convergent Neobrutalist logo icon.
+ * @returns {JSX.Element}
+ */
+function LogoIcon() {
+  return (
+    <div className="relative h-9 w-9 shrink-0 flex items-center justify-center rounded-xl border-2 border-slate-900 bg-[#84CC16] shadow-[2px_2px_0px_0px_#000]">
+      <svg viewBox="0 0 24 24" className="h-5.5 w-5.5 text-slate-900" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 4c4 4 6 6 8 8" />
+        <path d="M20 4c-4 4-6 6-8 8" />
+        <path d="M12 20v-8" />
+        <circle cx="12" cy="12" r="3.5" fill="white" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="4" cy="4" r="1.5" fill="currentColor" />
+        <circle cx="20" cy="4" r="1.5" fill="currentColor" />
+        <circle cx="12" cy="20" r="1.5" fill="currentColor" />
+      </svg>
+    </div>
+  );
+}
+
+/**
  * Renders a visual path convergence SVG showing models merging.
  * @returns {JSX.Element}
  */
@@ -810,8 +830,21 @@ export default function Page() {
       {/* Left Sidebar: Conversation History & Rate Limiting */}
       {showSidebar && (
         <div className="w-full lg:w-[260px] lg:h-screen shrink-0 border-b-2 lg:border-b-0 lg:border-r-2 border-slate-900 bg-white flex flex-col z-20 animate-fadeIn">
+          {/* Logo & Application Name */}
+          <div className="p-4 border-b-2 border-slate-900 flex items-center gap-3 bg-slate-50">
+            <LogoIcon />
+            <div className="flex flex-col">
+              <span className="text-xs font-black text-slate-900 uppercase tracking-wider leading-none">
+                CONSENSUAI
+              </span>
+              <span className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest mt-1">
+                Consistency Engine
+              </span>
+            </div>
+          </div>
+
           {/* New Chat & Hide Sidebar Button */}
-          <div className="p-4 border-b-2 border-slate-900 flex items-center gap-2">
+          <div className="p-3.5 border-b-2 border-slate-900 flex items-center gap-2">
             <button
               onClick={handleNewChat}
               className="flex-1 py-2.5 px-4 rounded-xl bg-[#84CC16] text-slate-900 font-bold border-2 border-slate-900 shadow-[3px_3px_0px_0px_#000] hover:bg-[#A3E635] hover:shadow-[1px_1px_0px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition flex items-center justify-center gap-2 text-xs uppercase tracking-wider"
