@@ -2,17 +2,27 @@
 
 import { useState, useEffect } from "react";
 
+/** @type {Object<string, {border: string, dot: string, text: string, borderActive: string}>} */
 const MODEL_STYLES = {
   OpenAI: { border: "border-openai/30", dot: "bg-openai", text: "text-openai", borderActive: "border-openai" },
   Gemini: { border: "border-gemini/30", dot: "bg-gemini", text: "text-gemini", borderActive: "border-gemini" },
   Claude: { border: "border-claude/30", dot: "bg-claude", text: "text-claude", borderActive: "border-claude" },
 };
 
+/**
+ * Returns stylesheet classes mapped by candidate model provider names.
+ * @param {string} modelLabel - Mapped model string.
+ * @returns {{border: string, dot: string, text: string, borderActive: string}}
+ */
 function styleFor(modelLabel) {
   const key = Object.keys(MODEL_STYLES).find((k) => modelLabel?.startsWith(k) || modelLabel?.includes(k));
   return MODEL_STYLES[key] || { border: "border-line", dot: "bg-fog", text: "text-fog", borderActive: "border-ink" };
 }
 
+/**
+ * Renders a visual path convergence SVG showing models merging.
+ * @returns {JSX.Element}
+ */
 function ConvergenceMark() {
   return (
     <svg viewBox="0 0 240 34" className="converge" aria-hidden="true">
@@ -25,6 +35,11 @@ function ConvergenceMark() {
   );
 }
 
+/**
+ * Renders the real-time workflow pipeline diagram showing parallel dispatches.
+ * @param {{isLoading: boolean}} props
+ * @returns {JSX.Element}
+ */
 function WorkflowDiagram({ isLoading = false }) {
   const particleSpeed = isLoading ? "1.5s" : "6s";
   return (
